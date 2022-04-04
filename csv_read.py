@@ -1,4 +1,4 @@
-import csv
+import csv,  sys
 from DSP import DSP
 from matplotlib import pyplot as plt
 from time import sleep
@@ -38,6 +38,7 @@ for i in range(1500):
     display.flip()
     sleep(0.01)
 while not done:
-
-    if pygame.event.get() == pygame.QUIT:
-        pygame.quit()
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()

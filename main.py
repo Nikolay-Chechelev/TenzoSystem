@@ -1,4 +1,4 @@
-import serial
+import serial,  sys
 import pygame
 from random import randint
 import DSP
@@ -32,5 +32,7 @@ while not done:
     pygame.draw.line(screen, [0, 100, 100], [0, 350], [1500, 350])
     display.flip()
 
-    if pygame.event.get() == pygame.QUIT:
-        pygame.quit()
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
