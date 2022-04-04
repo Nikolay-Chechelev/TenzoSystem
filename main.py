@@ -1,6 +1,7 @@
 import serial
 import pygame
 from random import randint
+import DSP
 display = pygame.display
 screen = display.set_mode([1500, 700])
 port = serial.Serial('/dev/ttyACM0', '115200')
