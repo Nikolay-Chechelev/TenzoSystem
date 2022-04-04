@@ -15,6 +15,7 @@ plt.plot(data)
 
 lpf = DSP(500)
 lpf.init_lp_filter(1)
+
 data = lpf.LPF(data)
 data = lpf.LPF(data)
 data = lpf.LPF(data)
