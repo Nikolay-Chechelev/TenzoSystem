@@ -15,7 +15,8 @@ def get_weight():
     s = str(port.read(1))
     while s != '\r':
         s += str(port.read(1))
-
+lpf = DSP(500)
+lpf.init_lp_filter(1)
 
 while not done:
     s = port.read(1).decode('utf-8')
@@ -26,6 +27,12 @@ while not done:
     f.write(str(s).replace('.', ',') + ';\r\n')
     data.append(s * 5)
     del data[0]
+
+    data = lpf.LPF(data)
+    data = lpf.LPF(data)
+    data = lpf.LPF(data)
+    data = lpf.LPF(data)
+    
     screen.fill([0, 0, 0])
     for i in range(len(data) - 1):
         pygame.draw.line(screen, [255, 100, 100], [i, 350 - data[i]], [i+1, 350 - data[i + 1]], 1)
