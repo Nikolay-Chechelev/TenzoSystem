@@ -1,7 +1,7 @@
 import serial,  sys
 import pygame
 from random import randint
-import DSP
+from DSP import DSP
 display = pygame.display
 screen = display.set_mode([1500, 700])
 port = serial.Serial('/dev/ttyACM0', '115200')
@@ -9,6 +9,7 @@ done = None
 a = randint(0, 1000000)
 
 f = open('samples/fo_sample_{}.csv'.format(a), 'w')
+data_raw = [0] * 1500
 data = [0] * 1500
 
 def get_weight():
@@ -28,14 +29,15 @@ while not done:
     data.append(s * 5)
     del data[0]
 
-    data = lpf.LPF(data)
-    data = lpf.LPF(data)
-    data = lpf.LPF(data)
-    data = lpf.LPF(data)
+    data_raw = lpf.LPF(data)
+    # data_raw = lpf.LPF(data_raw)
+    # data_raw = lpf.LPF(data_raw)
+    # data_raw = lpf.LPF(data_raw)
     
     screen.fill([0, 0, 0])
     for i in range(len(data) - 1):
-        pygame.draw.line(screen, [255, 100, 100], [i, 350 - data[i]], [i+1, 350 - data[i + 1]], 1)
+        # pygame.draw.line(screen, [255, 100, 100], [i, 350 - data[i]], [i+1, 350 - data[i + 1]], 1)
+        pygame.draw.line(screen, [255, 100, 255], [i, 350 - data_raw[i]], [i + 1, 350 - data_raw[i + 1]], 1)
     pygame.draw.line(screen, [0, 100, 100], [0, 350], [1500, 350])
     display.flip()
 
