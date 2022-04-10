@@ -153,3 +153,107 @@ class DSP():
             self.RR_distances.append(self.separation_picks[i+1] - self.separation_picks[i])
 
         return self.RR_distances
+
+    def decrease_sample_array(self, array=[0]):
+        l1 = 0
+        l2 = 0
+        x = 0
+        i = 0
+        d = 0
+        while array[i] * array[i + 1] >= 0 and x == 0:
+            # i += 1
+            del array[i]
+        x = i - x
+        i += 1
+        array_len = len(array) - 2
+
+        while i < array_len:
+            x = i
+            i += 1
+            while i < array_len and array[i] * array[i + 1] >= 0:
+                i += 1
+            l1 = i - x
+            x = i
+            i += 1
+            print('1 halfperiod =', l1)
+
+            while i < array_len and array[i] * array[i + 1] >= 0:
+                i += 1
+            l2 = i - x
+            print('2 halfperiod =', l2)
+
+            if l1 == l2:
+                # print('L1 == L2')
+                pass
+            if l1 > l2:
+                d = l1 // (l1 - l2)
+                m = l1 - l2
+                # print('L1 > L2', d, m)
+                while m > 0:
+                    del array[i - l1 - l2 + d * m]
+                    m -= 1
+                i -= l1 - l2
+                array_len -= l1 - l2
+
+            if l1 < l2:
+                d = l2 // (l2 - l1)
+                m = l2 - l1
+                # print('L1 < L2', d, m)
+                while m > 0:
+                    del array[i - l2 + d * m]
+                    m -= 1
+                i -= l2 - l1
+                array_len -= l2 - l1
+        return array
+
+    def increase_sample_array(self, array=[0]):
+        l1 = 0
+        l2 = 0
+        x = 0
+        i = 0
+        d = 0
+        while array[i] * array[i + 1] >= 0 and x == 0:
+            # i += 1
+            del array[i]
+        x = i - x
+        i += 1
+        array_len = len(array) - 2
+
+        while i < array_len:
+            x = i
+            i += 1
+            while i < array_len and array[i] * array[i + 1] >= 0:
+                i += 1
+            l1 = i - x
+            x = i
+            i += 1
+            print('1 halfperiod =', l1)
+
+            while i < array_len and array[i] * array[i + 1] >= 0:
+                i += 1
+            l2 = i - x
+            print('2 halfperiod =', l2)
+
+            if l1 == l2:
+                # print('L1 == L2')
+                pass
+            if l1 < l2:
+                d = l1 // (l2 - l1)
+                m = l2 - l1
+                # print('L1 > L2', d, m)
+                while m > 0:
+                    array.insert(i - l1 - l2 + d * m, (array[i - l1 - l2 + d * m - 1] + array[i - l1 - l2 + d * m]) / 2)
+                    m -= 1
+                i += l2 - l1
+                array_len += l2 - l1
+
+            if l1 > l2:
+                d = l2 // (l1 - l2)
+                m = l1 - l2
+                # print('L1 < L2', d, m)
+                while m > 0:
+                    array.insert(i - l2 + d * m, (array[i - l2 + d * m - 1] + array[i - l2 + d * m]) / 2)
+                    m -= 1
+                i += l1 - l2
+                array_len += l1 - l2
+        return array

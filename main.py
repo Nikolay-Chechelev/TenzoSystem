@@ -8,7 +8,7 @@ port = serial.Serial('/dev/ttyACM0', '115200')
 done = None
 a = randint(0, 1000000)
 
-f = open('samples/fo_sample_{}.csv'.format(a), 'w')
+f = open('samples/zavod_rab_10_{}.csv'.format(a), 'w')
 data_raw = [0] * 1500
 data = [0] * 1500
 
