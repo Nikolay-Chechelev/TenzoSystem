@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 from time import sleep
 import pygame
 
-f = open('samples/zavod_nerab_10_938155.csv', 'r')
+f = open('samples/zavod_nerab_10_294448.csv', 'r')
 
 csv_data = csv.reader(f, delimiter=';')
 data = []
@@ -24,7 +24,7 @@ plt.show()
 display = pygame.display
 screen = display.set_mode([1000, 1000])
 done = None
-x = 500
+x = 600
 c = 1.5
 pygame.draw.line(screen, [100, 0, 100], [500, 0], [500, 1000], 3)
 display.flip()
