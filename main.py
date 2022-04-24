@@ -1,5 +1,5 @@
 from GUI import *
-from data_preparing import GetData, LoadCharts
+from data_processing import GetData, LoadCharts
 # from test_flow import TestFlow
 from parameters import Parameters
 

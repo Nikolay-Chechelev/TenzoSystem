@@ -21,7 +21,7 @@
 # 17. Отрисовка графиков
 from ADS1115 import ads1115
 from MCP4725 import mcp4725
-from tenzo import tenzo
+from tenzo import Tenzo
 from parameters import Parameters
 from time import sleep
 
@@ -31,7 +31,7 @@ class TestFlow:
         self.dac = mcp4725()
         self.dac.set_voltage(0)
         sleep(5)
-        self.tenzo = tenzo()
+        self.tenzo = Tenzo()
         self.parameters = Parameters()
         self.first_cycle_data = []
         self.second_cycle_data = []
