@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 from time import sleep
 import pygame
 
-f = open('samples/zavod_nerab_10_294448.csv', 'r')
+f = open('samples_new/rab_140.csv', 'r')
 
 csv_data = csv.reader(f, delimiter=';')
 data = []
@@ -14,9 +14,9 @@ for row in csv_data:
 plt.plot(data)
 
 lpf = DSP(500)
-lpf.init_lp_filter(1)
-data = lpf.LPF(data)
-data = lpf.increase_sample_array(data)
+# lpf.init_lp_filter(1)
+# data = lpf.LPF(data)
+# data = lpf.increase_sample_array(data)
 
 plt.plot(data)
 plt.show()
